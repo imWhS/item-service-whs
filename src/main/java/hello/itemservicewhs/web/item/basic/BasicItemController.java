@@ -74,6 +74,15 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    @GetMapping("/{itemId}/edit")
+    public String editForm(
+            @PathVariable Long itemId,
+            Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+
+        return "basic/editForm";
+    }
 
     //스프링 빈 의존 관계 주입 후 테스트 데이터 추가
     @PostConstruct

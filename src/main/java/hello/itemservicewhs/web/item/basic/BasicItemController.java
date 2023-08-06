@@ -84,6 +84,15 @@ public class BasicItemController {
         return "basic/editForm";
     }
 
+    @PostMapping("/{itemId}/edit")
+    public String edit(
+            @PathVariable Long itemId,
+            @ModelAttribute Item item)
+    {
+        itemRepository.update(itemId, item);
+        return "redirect:/basic/items/{itemId}";
+    }
+
     //스프링 빈 의존 관계 주입 후 테스트 데이터 추가
     @PostConstruct
     public void init() {
